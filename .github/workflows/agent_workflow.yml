@@ -1,22 +1,22 @@
 name: Telegram Agent workflow
 
-on: 
+on:
   schedule:
-    - cron: '0 *6 * * *'
-      wrokflow_dispatch: {}
+    - cron: '0 */6 * * *'
+  workflow_dispatch: {}
 
-concurrecy:
+concurrency:
   group: telegram-bot-run
-  cancel-in-progress: flase
+  cancel-in-progress: false
 
-job:
+jobs:
   run-bot:
     runs-on: ubuntu-latest
     timeout-minutes: 350
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
